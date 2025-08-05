@@ -1,0 +1,79 @@
+function fetchAndLogSolarWind() {
+  const logSheetName = "LiveLog";
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(logSheetName);
+
+  if (!sheet) {
+    Logger.log("Sheet not found: " + logSheetName);
+    return;
+  }
+
+  // API URLs
+  const MAG_URL = "https://services.swpc.noaa.gov/products/solar-wind/mag-1-day.json";
+  const PLASMA_URL = "https://services.swpc.noaa.gov/products/solar-wind/plasma-1-day.json";
+  const GOES_MAG_URL = "https://services.swpc.noaa.gov/json/goes/secondary/magnetometers-1-day.json";
+
+  // --- DSCOVR MAG ---
+  const magData = JSON.parse(UrlFetchApp.fetch(MAG_URL).getContentText());
+  const magLatest = magData[magData.length - 1];
+  const timestampUTC = magLatest[0];  // As-is L1 timestamp
+  const bz = magLatest[3];
+  const by = magLatest[2];
+  const bx = magLatest[1];
+  const bt = magLatest[4];
+
+  // --- DSCOVR Plasma ---
+  const plasmaData = JSON.parse(UrlFetchApp.fetch(PLASMA_URL).getContentText());
+  const plasmaLatest = plasmaData[plasmaData.length - 1];
+  const speed = plasmaLatest[2];       // km/s
+  const density = plasmaLatest[3];
+
+  // --- ETA at Earth from L1 ---
+  const L1Time = new Date(timestampUTC); // use as-is
+  const travelTimeMin = 1500000 / (speed * 60); // km / (km/s * 60) = minutes
+  const arrivalDate = new Date(L1Time.getTime() + travelTimeMin * 60000);
+
+  // --- GOES MAG ---
+  const goesMagData = JSON.parse(UrlFetchApp.fetch(GOES_MAG_URL).getContentText());
+  let goesMagLatest = null;
+  let usedSatellite = "";
+
+  for (let sat of [16, 18]) {
+    for (let i = goesMagData.length - 1; i >= 0; i--) {
+      const entry = goesMagData[i];
+      if (entry.satellite === sat) {
+        goesMagLatest = entry;
+        usedSatellite = "GOES-" + sat;
+        break;
+      }
+    }
+    if (goesMagLatest) break;
+  }
+
+  // Handle missing or partial GOES values
+  let goesTime = "", hp = "", he = "", hn = "";
+  if (goesMagLatest) {
+    goesTime = goesMagLatest.time_tag;
+    hp = goesMagLatest.Hp ?? "";
+    he = goesMagLatest.He ?? "";
+    hn = goesMagLatest.Hn ?? "";
+  }
+
+  // --- Format and Append Row ---
+  const row = [
+    new Date(timestampUTC),   // A: L1 Time UTC (unchanged)
+    arrivalDate,              // B: Calculated ETA at Earth
+    bz,                       // C
+    by,                       // D
+    bx,                       // E
+    bt,                       // F
+    speed,                    // G
+    density,                  // H
+    new Date(goesTime),       // I: GOES timestamp UTC
+    hp,                       // J
+    he,                       // K
+    hn,                       // L
+    usedSatellite             // M
+  ];
+
+  sheet.appendRow(row);
+}
