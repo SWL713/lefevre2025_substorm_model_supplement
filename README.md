@@ -1,90 +1,97 @@
-LeFevre (2025) – Supplemental Data and Materials
-A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset
-Supplemental repository for the manuscript submitted to Space Weather (AGU)
-DOI: 10.5281/zenodo.16784026
+Supplementary Dataset and Materials — A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset
 
-Overview
-This repository contains all supplemental datasets, figures, and tables used in the study:
+This repository contains all supplementary materials, datasets, and figures used in the manuscript:
 
-LeFevre, S.W. (2025), A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset, Space Weather, [submitted].
+LeFevre, S. W. (2025). A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset. Submitted to Space Weather (AGU).
 
-The study presents a new empirical model for forecasting auroral substorm onset timing in real time using upstream solar wind measurements and GOES magnetometer data.
-Unlike traditional coupling models optimized for geomagnetic activity intensity, this model predicts timing by combining:
+It includes the full event dataset with embedded formulas, model calculations, figure source files, and supplemental tables referenced in the manuscript. All data are provided in accessible formats to support transparency, reproducibility, and peer review.
 
-A modified loading function (Lf) with reduced IMF clock angle weighting
+Repository Contents
+1. Data Files
+LeFevre Substorm Model - Full Dataset with calculations.xlsx
+Full dataset of 60 auroral substorm events from 2001–2025.
+Contains observed charging times, calculated coupling parameters (Lf), scaling constants (Cs), and response factors (Rf).
+All formulas are embedded in the Excel file for verification and reproduction of results.
+Includes conditional formatting and sorting for easier filtering of regimes.
 
-A dual-regime dynamic response factor (Rf) tied to coupling strength proxy XDst
+Table_1.xlsx
+Data subset for Table 1 in the manuscript (20 representative events).
+Contains XDst, start method, charging time, and model errors for both Lf-Rf and N-Rf methods.
 
-Definition of XDst
-XDst is defined as:
-XDst = V · |Bz| / 100,   for Bz < 0
-where:
-V = solar wind speed in km/s
-Bz = GSM z-component of IMF in nT (southward negative)
-Positive Bz values are excluded
+Table_2.xlsx
+Statistical summary for Table 2 in the manuscript, grouped by XDst bins.
 
-XDst serves as a Dst-proxy coupling strength index, identifying the transition between weak/stable tail loading and strong/dynamic onset regimes.
+Table_S1.xlsx (Supplemental)
+Complete dataset of all events with additional metadata, timing method notes, and calculated parameters.
 
-Contents
-Data Tables
-Table_1.xlsx – Example subset of 20 auroral substorm events showing observed parameters, calculated Rf values for both Newell-based and Lf-based models, and absolute prediction errors.
+Table_S2.xlsx (Supplemental)
+Additional statistical analysis outputs not included in the main manuscript.
 
-Table_2.xlsx – Summary prediction error statistics for all 60 events, binned by coupling strength regime.
+2. Figures
+All figures used in the manuscript are provided as high-resolution JPEGs for publication.
 
-Table_S1.xlsx – Full dataset of 60 substorm events used in the study. Includes event metadata, start type, observed charging time, all solar wind parameters, and calculated Lf, Cs, and Rf values.
-Note: All calculation formulas are embedded in this Excel file for transparency and reproducibility.
+Figure1.jpg — GOES trace example for substorm onset and charging phase identification.
 
-Table_S2.xlsx – Expanded results table with intermediate values used for figures and regression analysis.
+Figure_2.jpg — Clock angle weighting comparison between models.
 
-Figures
-(High-resolution JPG versions of manuscript figures)
+Figure_3.jpg — Response factor trends (Lf-Rf vs. N-Rf).
 
-Figure1.jpg – Example GOES magnetometer trace showing loading and onset identification.
+Figure_4.jpg — Static Cs vs. dynamic Rf error comparison.
 
-Figure_2.jpg – Comparison of clock angle weighting functions.
+Figure_5.jpg — Two-regime behavior of Tdelay vs. XDst.
 
-Figure_3.jpg – Rf vs XDst response fits for Lf-based and Newell-based coupling.
+Figure_6.jpg — Prediction error vs. coupling strength and IMF clock angle.
 
-Figure_4.jpg – Prediction error comparison: static Cs mean vs dynamic Rf.
+3. Manuscript
+A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset.docx
 
-Figure_5.jpg – Two-regime delay behavior vs XDst.
+Full working draft of the manuscript prepared for submission to Space Weather.
 
-Figure_6.jpg – Prediction error vs XDst and IMF clock angle.
+Includes all figure references, table captions, and equations.
 
-Primary Dataset
-LeFevre Substorm Model - Full Dataset with calculations.xlsx – Master dataset with all events, calculations, and intermediate results.
-Formulas for Lf, Rf, and all intermediate terms are embedded for verification.
+Supplemental tables are referenced and will be linked to this repository upon acceptance.
 
-Data Sources
-All source data are from publicly available repositories:
+🛰 Model Overview
+This study presents a dual-component empirical model for predicting auroral substorm onset timing in real time:
 
-OMNIWeb: https://omniweb.gsfc.nasa.gov/
+Loading Function (Lf) — Modified from Newell et al. (2007) with a reduced clock angle exponent (sin^(1/3)(θ/2)) to better capture onset delays under moderate IMF orientations.
 
-NOAA SWPC: https://services.swpc.noaa.gov
+Response Function (Rf) — Dynamic scaling factor derived from event-specific Cs constants as a function of coupling strength (XDst = V·|Bz| / 100). Exhibits a two-regime structure with a threshold at XDst ≈ –75.
 
-NASA CDAWeb: https://cdaweb.gsfc.nasa.gov/
+The model achieves:
 
-LASP Space Weather Data Portal: https://lasp.colorado.edu/space-weather-portal/
+Mean absolute error: ~18 minutes
 
-How to Cite
-If you use this dataset or code in your own work, please cite:
+Standard deviation: ~13 minutes
 
-LeFevre, S.W. (2025), A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset, Space Weather, [submitted].
+N = 60 substorm events (2001–2025)
 
-License
-Unless otherwise noted, all files are released under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
-You are free to share and adapt with appropriate credit.
+Robust performance under weak and transitional coupling conditions, where traditional models tend to fail.
 
-Contact
-Author: Scott W. LeFevre
-Email: [scott.w.lefevre@gmail.com]
-For questions about the data, methods, or replication, please open an Issue in this repository or email directly.
+📄 How to Cite
+If you use this dataset, figures, or code in your work, please cite:
 
-Notes for Reviewers
-This repository contains all supplemental data referenced in the manuscript, with filenames matching table/figure labels in the paper.
+LeFevre, S. W. (2025). Supplement to: A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset. Zenodo. https://doi.org/10.5281/zenodo.16784026
 
-All Excel datasets contain fully embedded calculation formulas for transparency.
+BibTeX:
 
-Figures are provided as high-resolution images suitable for verification against manuscript visuals.
+@dataset{lefevre2025_substorm_supplement,
+  author = {LeFevre, Scott W.},
+  title = {Supplement to: A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset},
+  year = {2025},
+  publisher = {Zenodo},
+  doi = {10.5281/zenodo.16784026},
+  url = {https://doi.org/10.5281/zenodo.16784026}
+}
+🔍 Reproducibility Notes
+All formulas for Lf, Cs, Rf, and timing error are embedded in LeFevre Substorm Model - Full Dataset with calculations.xlsx and can be reviewed or modified directly.
 
-No proprietary or restricted-access data were used; all sources are open and listed above.
+Event timing determinations are based on GOES magnetometer Hp traces following the methodology in Section 2.2 of the manuscript.
+
+XDst threshold of –75 separates weak and strong coupling regimes for Rf fitting.
+
+📬 Contact
+For questions about the dataset or model, contact:
+Scott W. LeFevre
+Email: (add your preferred email or ORCID here)
+GitHub: SWL713
