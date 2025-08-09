@@ -114,7 +114,7 @@ Datasets span 2001–2025, covering multiple solar cycles and a wide intensity r
 How to Use
 Download this repository.
 
-Open Table_S1.xlsx to view the full dataset with embedded formulas.
+Open LeFevre Substorm Model - Full Dataset with calculations.xlsx to view the full dataset with embedded formulas.
 
 Adjust input solar wind parameters in the provided template to test your own event predictions.
 
