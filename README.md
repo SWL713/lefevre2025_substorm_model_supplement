@@ -1,6 +1,7 @@
 LeFevre (2025) – Supplemental Data and Materials
 A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset
 Supplemental repository for the manuscript submitted to Space Weather (AGU)
+DOI: 10.5281/zenodo.16784026
 
 Overview
 This repository contains all supplemental datasets, figures, and tables used in the study:
