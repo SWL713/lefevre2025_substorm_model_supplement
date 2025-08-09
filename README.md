@@ -1,126 +1,89 @@
+LeFevre (2025) – Supplemental Data and Materials
 A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset
+Supplemental repository for the manuscript submitted to Space Weather (AGU)
+
 Overview
-This repository contains the full supplemental dataset, figures, and calculation resources for the study:
+This repository contains all supplemental datasets, figures, and tables used in the study:
 
-LeFevre, S.W. (2025), "A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset," submitted to Space Weather (AGU).
+LeFevre, S.W. (2025), A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset, Space Weather, [submitted].
 
-The model predicts the delay between solar wind–magnetosphere coupling onset and auroral substorm onset using:
+The study presents a new empirical model for forecasting auroral substorm onset timing in real time using upstream solar wind measurements and GOES magnetometer data.
+Unlike traditional coupling models optimized for geomagnetic activity intensity, this model predicts timing by combining:
 
-A modified solar wind coupling function (Loading Function, Lf) optimized for shallow IMF clock angles.
+A modified loading function (Lf) with reduced IMF clock angle weighting
 
-A dynamic, regime-dependent response factor (Rf) scaled by a coupling strength proxy (XDst).
+A dual-regime dynamic response factor (Rf) tied to coupling strength proxy XDst
 
-A two-regime behavior reflecting distinct magnetotail responses under weak and strong coupling.
+Definition of XDst
+XDst is defined as:
+XDst = V · |Bz| / 100,   for Bz < 0
+where:
+V = solar wind speed in km/s
+Bz = GSM z-component of IMF in nT (southward negative)
+Positive Bz values are excluded
 
-The framework is designed for real-time auroral nowcasting, with particular value for mid-latitude aurora forecasting, and is based on 60 auroral substorm events (32 visually confirmed at mid-latitudes).
+XDst serves as a Dst-proxy coupling strength index, identifying the transition between weak/stable tail loading and strong/dynamic onset regimes.
 
-Repository Structure
-Main Manuscript
-A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset.docx
-Full submission manuscript with methods, results, discussion, and references. Figures and tables are referenced in text.
+Contents
+Data Tables
+Table_1.xlsx – Example subset of 20 auroral substorm events showing observed parameters, calculated Rf values for both Newell-based and Lf-based models, and absolute prediction errors.
+
+Table_2.xlsx – Summary prediction error statistics for all 60 events, binned by coupling strength regime.
+
+Table_S1.xlsx – Full dataset of 60 substorm events used in the study. Includes event metadata, start type, observed charging time, all solar wind parameters, and calculated Lf, Cs, and Rf values.
+Note: All calculation formulas are embedded in this Excel file for transparency and reproducibility.
+
+Table_S2.xlsx – Expanded results table with intermediate values used for figures and regression analysis.
 
 Figures
-Figure_1.jpg – Example GOES magnetometer trace with growth phase (G) and expansion phase (E) markers.
+(High-resolution JPG versions of manuscript figures)
 
-Figure_2.jpg – IMF clock angle coupling threshold analysis and comparison of angular weighting functions.
+Figure1.jpg – Example GOES magnetometer trace showing loading and onset identification.
 
-Figure_3.jpg – Response factor (Cs) trends for present vs. Newell-based coupling.
+Figure_2.jpg – Comparison of clock angle weighting functions.
 
-Figure_4.jpg – Prediction error comparison: static mean Cs vs. dynamic Rf model.
+Figure_3.jpg – Rf vs XDst response fits for Lf-based and Newell-based coupling.
 
-Figure_5.jpg – Two-regime behavior of substorm delay time (Tdelay) vs. XDst.
+Figure_4.jpg – Prediction error comparison: static Cs mean vs dynamic Rf.
 
-Figure_6.jpg – Prediction error vs. XDst and IMF clock angle for present vs. Newell-based model.
+Figure_5.jpg – Two-regime delay behavior vs XDst.
 
-Primary Data Tables
-Table_1.xlsx – Example subset of 20 events with key parameters and timing errors for both models.
+Figure_6.jpg – Prediction error vs XDst and IMF clock angle.
 
-Table_2.xlsx – Summary statistics for the full 60-event dataset, grouped by coupling regime.
-
-Supplemental Tables
-Table_S1.xlsx – Full 60-event dataset with solar wind parameters, coupling function values, and timing results.
-
-Table_S2.xlsx – Supporting calculations, including intermediate parameters for reproducibility.
-
-Note: All formulas used for Lf, Rf, XDst, and Tdelay calculations are embedded in the Excel sheets, enabling full reproduction and verification of results.
+Primary Dataset
+LeFevre Substorm Model - Full Dataset with calculations.xlsx – Master dataset with all events, calculations, and intermediate results.
+Formulas for Lf, Rf, and all intermediate terms are embedded for verification.
 
 Data Sources
-All solar wind and geomagnetic data used are publicly available:
+All source data are from publicly available repositories:
 
-Solar Wind:
+OMNIWeb: https://omniweb.gsfc.nasa.gov/
 
-OMNIWeb (pre-June 2025): https://omniweb.gsfc.nasa.gov/
+NOAA SWPC: https://services.swpc.noaa.gov
 
-NOAA SWPC real-time data (post-June 2025): https://services.swpc.noaa.gov
-
-NASA CDAWeb L1 data (WIND, DSCOVR): https://cdaweb.gsfc.nasa.gov/
-
-GOES Magnetometer:
+NASA CDAWeb: https://cdaweb.gsfc.nasa.gov/
 
 LASP Space Weather Data Portal: https://lasp.colorado.edu/space-weather-portal/
 
-NASA CDAWeb archive
+How to Cite
+If you use this dataset or code in your own work, please cite:
 
-Model Summary
-1. Coupling Strength Proxy (XDst)
-XDst = (V × |Bz|) / 100, with Bz < 0 only
+LeFevre, S.W. (2025), A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset, Space Weather, [submitted].
 
-Scales like the Dst index.
+License
+Unless otherwise noted, all files are released under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+You are free to share and adapt with appropriate credit.
 
-Serves as the predictor for Rf regime separation at XDst ≈ –75.
+Contact
+Author: Scott W. LeFevre
+Email: [scott.w.lefevre@gmail.com]
+For questions about the data, methods, or replication, please open an Issue in this repository or email directly.
 
-2. Loading Function (Lf)
-Modified from Newell et al. (2007):
-Lf = V^(4/3) × Bt^(2/3) × sin^(1/3)(θ/2)
+Notes for Reviewers
+This repository contains all supplemental data referenced in the manuscript, with filenames matching table/figure labels in the paper.
 
-Uses fractional sine exponent (1/3) to better capture timing under moderate clock angles (~30°–50° threshold).
+All Excel datasets contain fully embedded calculation formulas for transparency.
 
-3. Response Function (Rf)
-Empirically fit to observed scaling constants (Cs) vs. XDst:
+Figures are provided as high-resolution images suitable for verification against manuscript visuals.
 
-Weak Coupling (XDst > –75): 2nd-order polynomial
-
-Strong Coupling (XDst ≤ –75): 3rd-order polynomial
-
-Captures:
-
-Weak regime: Longer, more variable delays due to plasma sheet stabilization.
-
-Strong regime: Shorter delays with rebound under extreme driving (possible feedback/saturation effects).
-
-4. Timing Prediction
-Tdelay = Rf / Lf
-
-Applied from growth phase onset to predict expansion onset timing.
-
-Key Findings
-Mean timing error: 18 minutes (σ = 13 min) across all 60 events.
-
-Performance gain over Newell-based coupling:
-
-Especially in weak and transitional regimes, avoiding multi-day overpredictions.
-
-Stable across full XDst range and IMF clock angles.
-
-Physically grounded two-regime behavior: Matches trends reported by Freeman & Morley (2004) and Hsu & McPherron (2002).
-
-Reproducibility
-All calculation formulas are embedded in the Excel sheets (Table_1.xlsx, Table_S1.xlsx).
-
-No proprietary code—Microsoft Excel and JMP 17.0.0 used for analysis.
-
-Datasets span 2001–2025, covering multiple solar cycles and a wide intensity range.
-
-How to Use
-Download this repository.
-
-Open LeFevre Substorm Model - Full Dataset with calculations.xlsx to view the full dataset with embedded formulas.
-
-Adjust input solar wind parameters in the provided template to test your own event predictions.
-
-Use Figures 2–6 for reference on model behavior under different coupling strengths and IMF conditions.
-
-Citation
-If using this dataset or model in your own work, please cite:
-
-LeFevre, S.W. (2025), A Real-Time Loading–Response Model for Predicting Auroral Substorm Onset, Space Weather (submitted).
+No proprietary or restricted-access data were used; all sources are open and listed above.
